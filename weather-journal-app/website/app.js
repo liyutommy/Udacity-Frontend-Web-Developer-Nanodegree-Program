@@ -28,9 +28,8 @@ async function getWeather() {
         }
         // pass the data object to the url /addWeather in server side
         postData('/addWeather', dataObj)
-        .then((weatherData) => { // weatherData is the return value from postData function
-            updateUI(weatherData);
-        });
+        // update DOM element to tell user the weather data
+        updateUI();
     })
 }
 
@@ -62,7 +61,6 @@ const getWeatherData = async (baseURL, zip, country, key) => {
 
 const postData = async (url='', postData={}) => {
     console.log(postData);
-    // fetch(resourse, init)
     // init: An object containing any custom settings that you want to apply to the request
     const response = await fetch(url, {
         method: 'POST',
@@ -82,10 +80,12 @@ const postData = async (url='', postData={}) => {
     }
 }
 
-const updateUI = async (data) => {
-    console.log("updateUI:", data);
-    // update DOM element's content
+const updateUI = async () => {
+    const response = await fetch("/all");
+    console.log(response);
     try{
+        const data = await response.json();
+        console.log(data);
         document.getElementById('date').innerHTML = `Date: ${data.date}`;
         document.getElementById('loca').innerHTML = `Location: ${data.location}`;
         document.getElementById('temp').innerHTML = `Temperature: ${data.temperature}`;
@@ -94,16 +94,3 @@ const updateUI = async (data) => {
         console.log("error", error);
     }
 }
-
-// get function
-const getData = async (url='') => {
-    try{
-        const response = await fetch(url);
-        const result = response.ok? "Get Request: fetch data successfully" : "Get Request: exist an error in server";
-        console.log(result);
-    } catch (error){
-        console.log("error", error);
-    }
-}
-
-getData('/');

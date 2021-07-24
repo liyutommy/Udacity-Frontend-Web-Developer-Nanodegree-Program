@@ -30,14 +30,14 @@ function listening(){
 }
 
 // get request
-app.get('/', (req, res) => {
-    console.log(projectData);
+app.get('/all', (req, res) => {
+    console.log("Get request sending:", projectData);
     res.send(projectData);
 });
 
 // post request 
 app.post('/addWeather', (req, res) => {
     projectData = req.body;
-    console.log("Sending Data:", projectData);
+    console.log("Post request sending:", projectData);
     res.send(projectData);
 });
