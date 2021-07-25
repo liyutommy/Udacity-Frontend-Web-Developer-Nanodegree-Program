@@ -27,10 +27,12 @@ async function getWeather() {
             userResponse: feelings,
         }
         // pass the data object to the url /addWeather in server side
-        postData('/addWeather', dataObj)
-        // update DOM element to tell user the weather data
-        updateUI();
-    })
+        return postData('/addWeather', dataObj);
+    }).then(
+        () => {
+            // update DOM element to tell user the weather data
+            updateUI();}
+    )
 }
 
 const getWeatherData = async (baseURL, zip, country, key) => {
