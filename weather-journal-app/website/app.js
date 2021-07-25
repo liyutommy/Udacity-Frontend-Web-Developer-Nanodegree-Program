@@ -91,6 +91,7 @@ const updateUI = async () => {
         document.getElementById('temp').innerHTML = `Temperature: ${data.temperature}`;
         document.getElementById('content').innerHTML = `Feeling: ${data.userResponse}`;
     } catch(error){
+        alert("error" + error);
         console.log("error", error);
     }
 }
