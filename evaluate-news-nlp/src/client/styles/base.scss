@@ -6,9 +6,49 @@ body {
 
 main {
     flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #659DBD;
+}
+
+h1 {
+    margin: 1em 0.5em;
+    font-size: 2em; 
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 1em 0.5em;
 }
 
 section {
-    max-width: 800px;
-    margin: 50px auto;
+    width: 80%;
+    margin: 1em 0.5em;
+}
+
+main section:nth-child(4){
+    border: 2px solid #FBEEC1;
+    border-radius: 5px;
+    background-color: #FBEEC1;
+}
+
+
+@media all and (min-width: 768px) {
+    section {
+        width: 60%;
+    }
+}
+
+#results{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1em;
+}
+
+#results div{
+    line-height: 2em;
+    padding: 0.5em;
 }
