@@ -1,5 +1,15 @@
 import fetch from 'node-fetch';
 
+function isValidURL(string){
+    const regex = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return regex.test(string);
+}
+
 function handleSubmit(event) {
     event.preventDefault();
 
@@ -8,7 +18,7 @@ function handleSubmit(event) {
 
     Client.checkForName(formText)
 
-    console.log("::: Form Submitted :::")
+    console.log("::: Form Submitted :::");
 
     /*
     fetch('http://localhost:8081/test')
@@ -18,12 +28,17 @@ function handleSubmit(event) {
         document.getElementById('results').innerHTML = res.message
     })
     */
-    const dataObj = {
-        text: formText
-    };
-    postData('/textAnalysis', dataObj)
-    .then(() => updateUI());
-    
+    if(isValidURL(formText)){
+        console.log("valid url");
+        const dataObj = {
+            text: formText
+        };
+        postData('/textAnalysis', dataObj)
+        .then(() => updateUI());
+    } else {
+        alert('The input URL is not valid!!')
+        return;
+    }
 }
 
 

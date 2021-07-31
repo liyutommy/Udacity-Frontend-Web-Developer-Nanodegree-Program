@@ -48,10 +48,8 @@ app.get('/results', (req, res) => {
 })
 
 app.post('/textAnalysis', async (req, res) => {
-    const url = `${baseURL}?key=${process.env.API_KEY}&txt=${req.body.text}&lang=en`;
-    // remove unescaped characters
-    const encodedURI = encodeURI(url);
-    const response = await fetch(encodedURI);
+    const url = `${baseURL}?key=${process.env.API_KEY}&url=${req.body.text}&lang=en`;
+    const response = await fetch(url);
     try{
         const data = await response.json();
         console.log(data);
