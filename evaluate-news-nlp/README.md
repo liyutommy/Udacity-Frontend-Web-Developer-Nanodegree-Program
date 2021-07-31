@@ -27,7 +27,7 @@ Once we cloned the folder, we will still need to install everything:
 `cd` into our new folder and run:
 - `npm install`
 
-## Stage 2 - Setting up the API
+### Stage 2 - Setting up the API
 
 - Sign up an account for meaningCloud API and get its API key
 - Create a .env folder to store the API key
