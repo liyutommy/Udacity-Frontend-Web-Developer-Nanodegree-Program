@@ -96,5 +96,5 @@ const updateUI = async () => {
 }
 
 
-export { handleSubmit, postData }
+export { handleSubmit, postData, isValidURL }
 
