@@ -35,12 +35,18 @@ This project builds out a travel app that, at a minimum, obtains a desired trip 
         - style.scss 
 ```
 
-### Set up Enviroment
+### Run the Travel APP
 
 ```terminal
-npm run build-dev
-npm run build-prod
+npm run dev
+npm run build
 npm start
+```
+
+### Test the Travel APP
+
+```terminal
+npm test
 ```
 
 ## Screenshots
