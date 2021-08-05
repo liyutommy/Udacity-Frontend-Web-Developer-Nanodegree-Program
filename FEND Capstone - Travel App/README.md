@@ -58,3 +58,8 @@ npm test
 <p align="center">
   <img width="700" height="800" src="screenshot2.png">
 </p>
+
+## Extra Feature
+
+- Allow the user to remove the trip
+    - click the 'remove trip' button to clear all input fields and hidden the 'travel info' section

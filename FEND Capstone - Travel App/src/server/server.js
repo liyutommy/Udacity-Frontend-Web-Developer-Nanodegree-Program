@@ -40,3 +40,5 @@ app.post('/postTraveInfo', (req, res) => {
 app.get('/projectData', (req, res) => {
     res.send(projectData);
 })
+
+module.exports = app;
