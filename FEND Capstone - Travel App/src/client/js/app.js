@@ -9,6 +9,7 @@ const pixabayAPIKey = '22770684-c8dae18a87b4189d2d15c5173';
 
 
 // Helper functions
+// check if input is empty or short
 const checkInput = (input) => {
     if(input.length < 2){
         alert("The input is too short or empty!");
@@ -18,6 +19,7 @@ const checkInput = (input) => {
     }
 }
 
+// remove charactres except 26 letters
 const removeOp = (input) => {
     let s =  input.replace(/[^a-zA-Z ]+/g, '');
     return s;
@@ -30,7 +32,7 @@ const dateDifference = (date2, date1) => {
     return diffDays;
 }
 
-// get 
+// get departure date's temperature and weather description
 const getTempDesc = (data) => {
     // calculate how many days away from today
     const today = new Date();
@@ -47,12 +49,14 @@ const getTempDesc = (data) => {
     travelInfoData.city = data.city_name;
 }
 
+// captalize first letters of all words
 function capAllLetters(s) {
     return s.replace(/\w\S*/g, function(txt){
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }
 
+// add event listeners when DOM is loaded completely
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('save').addEventListener('click', handleSave);
     document.getElementById('remove').addEventListener('click', handleRemove);
@@ -72,8 +76,6 @@ function handleSave(event) {
         travelInfoData.dest = capAllLetters(removeOp(destination));
         travelInfoData.date = date;
 
-        console.log(travelInfoData);
-
         getGeoName(travelInfoData.dest)
         .then(() => getWeatherbit(travelInfoData.lat, travelInfoData.lng))
         .then(() => getPixabay(travelInfoData.city))
@@ -83,13 +85,12 @@ function handleSave(event) {
     }
 }
 
+// obtain destination's longitude and latitude 
 const getGeoName = async (dest) => {
     const urlGeoName = `${geoNameBaseURL}name_equals=${dest}&username=${username}`;
-
     const resGeoName = await fetch(urlGeoName);
     try{
         const dataGeoName = await resGeoName.json();
-        console.log(dataGeoName);
         // error handling
         if(dataGeoName.totalResultsCount){
             const geoNameData = dataGeoName['geonames'][0];
@@ -107,6 +108,7 @@ const getGeoName = async (dest) => {
     }
 }
 
+// obtain destination's 16-day weather forecast
 const getWeatherbit = async (lat, lng) => {
     const urlWeatherbit = `${weatherbitBaseURL}lat=${lat}&lon=${lng}&key=${weatherbitAPIKey}`;
     const resWeatherbit = await fetch(urlWeatherbit);
@@ -119,13 +121,12 @@ const getWeatherbit = async (lat, lng) => {
     }
 }
 
+// obtain destination's image URL
 const getPixabay = async (city) => {
     const urlPixabay = `${pixabayBaseURL}q=${city} city&image_type=photo&pretty&key=${pixabayAPIKey}`;
     const resPixabay = await fetch(urlPixabay);
-    console.log(urlPixabay);
     try{
         const dataPixabay = await resPixabay.json();
-        console.log(dataPixabay);
         // error handling
         if(dataPixabay.totalHits){
             travelInfoData.image = dataPixabay.hits[0].webformatURL;
@@ -139,6 +140,7 @@ const getPixabay = async (city) => {
     }
 }
 
+// store travelInfoData to the server side
 const postData = async (url='', postData={}) => {
     const response = await fetch(url, {
         method: 'POST',
@@ -156,6 +158,7 @@ const postData = async (url='', postData={}) => {
     }
 }
 
+// update UI elements and hidden 'travel info' section
 const updateUI = async () => {
     const response = await fetch('/projectData');
     try{

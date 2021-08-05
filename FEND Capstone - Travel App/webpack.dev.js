@@ -24,7 +24,7 @@ module.exports = {
                 test: /\.scss$/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ] // sass-loader->style-loader
             },
-            {
+            { // load image
                 test: /\.(png|jpe?g|gif)$/i,
                 use: [{
                     loader: 'file-loader',
@@ -49,6 +49,6 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
-        new WorkboxPlugin.GenerateSW()
+        new WorkboxPlugin.GenerateSW() // service worker
     ]
 }
