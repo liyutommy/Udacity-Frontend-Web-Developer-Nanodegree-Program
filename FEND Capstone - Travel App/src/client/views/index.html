@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div class="content">
+        <header>
+            <nav>
+                <img id="icon" src="./travel.png" alt="travel app icon" />
+            </nav>
+        </header>
+
+        <main>
+            <h1>Travel Plan</h1>
+            <section id="plan">
+                <form id="trave-plan-form">
+                    <div class="form-groups">
+                        <div class="form-group">
+                            <label for="origin">Depart from: </label>
+                            <input type="text" name="origin" id="origin" placeholder="city name" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Come to: </label>
+                            <input type="text" name="destination" id="destination" placeholder="city name" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Departure Date: </label>
+                            <input type="date" name="date" id="date" required />
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <input type="submit" value="save trip" id="save">
+                        <input type="submit" value="remove trip" id="remove">
+                    </div>
+                </form>
+            </section>
+            <div id="trave-result" class="hidden">
+                <h1>Travel Info</h1>
+                <section id="result">
+                    <figure>
+                        <img src="" id="place-name" alt="place name"/>
+                        <figcaption id="figcaption"> </figcaption>
+                    </figure>
+                    <div id="travel-info">
+                        <div> Depature date: <span id="departure-date"></span></div>
+                        <div> You are going from <span id="orig"></span> to <span id="dest"></span></div>
+                        <div> Predicted temperature: <span id="temp"></span></div>
+                        <div> Mostly <span id="weather"></span> throughtout the day</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <span>© 2021 All Right Reserved by Yu Li</span>
+    </footer>
+    
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
+
+</body>
+
+</html>

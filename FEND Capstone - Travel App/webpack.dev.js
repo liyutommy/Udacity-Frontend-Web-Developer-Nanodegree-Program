@@ -23,7 +23,16 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ] // sass-loader->style-loader
-            }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name:'[name].[ext]',
+                    }
+                }]
+            },
         ]
     },
     plugins: [
@@ -40,5 +49,6 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
+        new WorkboxPlugin.GenerateSW()
     ]
 }
