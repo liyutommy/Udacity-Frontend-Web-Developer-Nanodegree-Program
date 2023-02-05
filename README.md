@@ -5,10 +5,10 @@
 1. Personal Blog Website
     - HTML, CSS
 2. Landing Page
-    - JavaScript
+    - HTML, CSS, JavaScript
 3. Weather Journal App
-    - JavaScript, Async, Fetch, Node.js
+    - HTML, CSS, JavaScript, Async, Fetch, Node.js, OpenWeatherMap API
 4. Evaluate a News Article with Natural Language Processing
-    - JavaScript, Async, Fetch, Node.js, Webpack, Babel, Service Worker
+    - HTML, CSS, JavaScript, Async, Fetch, Node.js, Webpack, Babel, Service Worker, MeaningCloud API
 5. FEND Capstone - Travel App
-    - HTML, CSS, JavaScript, Async, Fetch, Node.js, Webpack, Babel, Service Worker
+    - HTML, CSS, JavaScript, Async, Fetch, Node.js, Webpack, Babel, Service Worker, GeoName API, WeatherBit API, Pixabay API
